@@ -76,4 +76,9 @@ public class PatientController {
         return Map.of("username", username);
 
     }
+
+    @GetMapping("/getPatientForDoctor/{doctorId}")
+    public List<Patient> getPatientByBookedAppointment(@PathVariable int doctorId) {
+        return patientDao.getPatientByBookedAppointment(doctorId);
+    }
 }

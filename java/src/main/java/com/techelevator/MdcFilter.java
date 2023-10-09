@@ -22,7 +22,7 @@ public class MdcFilter implements Filter {
             throws IOException, ServletException {
 
         HttpServletRequest request = (HttpServletRequest) servletRequest;
-        MDC.put("userId", "Salaj");
+        MDC.put("userId", "Youngjin");
         MDC.put("sessionId", request.getSession().getId());
         MDC.put("method", request.getMethod());
         MDC.put("request", request.getRequestURI());

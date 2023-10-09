@@ -61,6 +61,20 @@ public class JdbcPatientDao implements PatientDao{
         }
         return patients;
     }
+
+    public List<Patient> getPatientByBookedAppointment(int doctorId) {
+        List<Patient> patients = new ArrayList<>();
+        String sql = "SELECT * FROM patient WHERE patient_id IN (SELECT patient_id FROM appointment WHERE doctor_id = ?);";
+        try {
+            SqlRowSet result = jdbcTemplate.queryForRowSet(sql, doctorId);
+            while(result.next()) {
+                patients.add(mapRowToPatient(result));
+            }
+        } catch (NullValueInNestedPathException | EmptyResultDataAccessException e) {
+            throw new RuntimeException("No patient found");
+        }
+        return patients;
+    }
     @Override
     public Patient getPatientByUserId(int userId) {
         String sql = "SELECT * FROM patient WHERE user_id = ?";

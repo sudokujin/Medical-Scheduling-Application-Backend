@@ -24,4 +24,6 @@ public interface PatientDao {
     void updatePatient (int patientId, Patient patient);
 
     int getPatientIdByUserId(int id);
+
+    List<Patient> getPatientByBookedAppointment(int doctorId);
 }
