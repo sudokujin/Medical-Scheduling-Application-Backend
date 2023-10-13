@@ -40,13 +40,13 @@ public class JdbcDoctorDao implements DoctorDao{
         List<Doctor> doctors = new ArrayList<>();
         String sql = "SELECT * FROM doctor;";
         try {
-        SqlRowSet result = jdbcTemplate.queryForRowSet(sql);
-        while(result.next()) {
-            doctors.add(mapRowToDoctor(result));
-        }
-            } catch (NullValueInNestedPathException | EmptyResultDataAccessException e) {
-                throw new RuntimeException("No doctor found");
+            SqlRowSet result = jdbcTemplate.queryForRowSet(sql);
+            while(result.next()) {
+                doctors.add(mapRowToDoctor(result));
             }
+        } catch (NullValueInNestedPathException | EmptyResultDataAccessException e) {
+            throw new RuntimeException("No doctor found");
+        }
         return doctors;
     }
 
@@ -61,7 +61,7 @@ public class JdbcDoctorDao implements DoctorDao{
             throw new UsernameNotFoundException("User " + doctorLastName + " was not found.");
         }
         return doctorId;
-        }
+    }
 
     @Override
     public void create(Doctor doctor) {
@@ -69,7 +69,7 @@ public class JdbcDoctorDao implements DoctorDao{
                 "VALUES (?, ?, ?, ?, ?, ?, ?);" ;
         jdbcTemplate.update(sql, doctor.getUserId(), doctor.getFirstName(), doctor.getLastName(), doctor.getSpecialty(), doctor.getSuiteNumber(),doctor.getCostPerHour(), doctor.getPhoneNumber());
 
-        }
+    }
 
 
     @Override

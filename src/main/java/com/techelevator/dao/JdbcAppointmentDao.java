@@ -91,6 +91,20 @@ public class JdbcAppointmentDao implements AppointmentDao{
         return appointments;
     }
 
+    public List<Appointment> getAppointmentsOnOrAfterTodayAndByDoctorId (int doctorId) {
+        List<Appointment> appointments = new ArrayList<>();
+        String sql = "SELECT * FROM appointment JOIN doctor ON appointment.doctor_id=doctor.doctor_id WHERE doctor.doctor_id = ? AND appointment.appointment_date >= ?;";
+        try {
+            SqlRowSet result = jdbcTemplate.queryForRowSet(sql, doctorId, LocalDate.now());
+            while(result.next()) {
+                appointments.add(mapRowToAppointment(result));
+            }
+        } catch (NullValueInNestedPathException | EmptyResultDataAccessException e) {
+            throw new RuntimeException("No appointment found");
+        }
+        return appointments;
+    }
+
     @Override
     public List<Appointment> getPatientAppointmentsByUserId(int userId) {
         List<Appointment> appointments = new ArrayList<>();
@@ -172,4 +186,3 @@ public class JdbcAppointmentDao implements AppointmentDao{
 
     }
 }
-

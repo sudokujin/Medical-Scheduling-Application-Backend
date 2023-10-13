@@ -119,8 +119,18 @@ public class JdbcPatientDao implements PatientDao{
 
     @Override
     public void updatePatient(int patientId, Patient patient) {
-        String sql = "UPDATE patient SET patient_id=?, first_name=?, last_name=?, address=?, city=?, states=?, zipcode=?, email_address=?, patient_number=?, birthdate=? WHERE patient_id = ?;";
-        jdbcTemplate.update(sql,patient, patientId);
+        String sql = "UPDATE patient SET first_name=?, last_name=?, address=?, city=?, states=?, zipcode=?, email_address=?, patient_number=?, birthdate=? WHERE patient_id = ?;";
+        jdbcTemplate.update(sql,
+                patient.getFirstName(),
+                patient.getLastName(),
+                patient.getAddress(),
+                patient.getCity(),
+                patient.getStates(),
+                patient.getZipcode(),
+                patient.getEmailAddress(),
+                patient.getPatientNumber(),
+                patient.getBirthdate(),
+                patientId);
 
     }
 
@@ -153,6 +163,7 @@ public class JdbcPatientDao implements PatientDao{
 
 
 }
+
 
 
 

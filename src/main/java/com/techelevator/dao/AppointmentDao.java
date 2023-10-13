@@ -3,7 +3,6 @@ package com.techelevator.dao;
 import com.techelevator.model.Appointment;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 public interface AppointmentDao {
@@ -29,5 +28,7 @@ public interface AppointmentDao {
     void deleteAppointment(int appointmentId);
 
     List<Appointment> getAppointmentsByDate(String date);
+
+    List<Appointment> getAppointmentsOnOrAfterTodayAndByDoctorId(int id);
 }
 

@@ -63,7 +63,7 @@ public class PatientController {
     }
 
     @DeleteMapping("/{id}")
-    public void deletePatient(@PathVariable int id, @Valid @RequestBody Patient patient) {
+    public void deletePatient(@PathVariable int id) {
         patientDao.deletePatientById(id);
     }
 

@@ -58,14 +58,18 @@ public class AppointmentController {
     public List<Appointment> getAppointmentsByDoctorId(@PathVariable int id) {
         return appointmentDao.getAppointmentsByDoctorId(id);
     }
+
+    @GetMapping("/doctorToday/{id}")
+    public List<Appointment> getAppointmentsTodayAndLaterForDoctor(@PathVariable int id) {
+        return appointmentDao.getAppointmentsOnOrAfterTodayAndByDoctorId(id);
+    }
     @PutMapping("/{id}")
     public void updateAppointment(@PathVariable int id, @Valid @RequestBody Appointment appointment){
         appointmentDao.updateAppointment(id, appointment);
     }
+
     @DeleteMapping("/{id}")
     public void deleteAppointment(@PathVariable int id) {
         appointmentDao.deleteAppointment(id);
     }
 }
-
-
