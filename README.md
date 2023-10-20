@@ -1,4 +1,4 @@
-# Capstone Starter Project
+# Medical Scheduling Application
 
 ## Database
 
