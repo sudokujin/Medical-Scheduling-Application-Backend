@@ -76,7 +76,7 @@ public class AuthenticationController {
 }
 ```
 
-## Security
+## Security and Authentication
 
 Most of the functionality related to Security is located in the `/src/main/java/com/techelevator/security` package. You shouldn't have to modify anything here, but feel free to go through the code if you want to see how things work.
 
